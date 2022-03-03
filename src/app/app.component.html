@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
   <span style="align: left">{{ title }}</span>
-  <span> | Coin: {{ player.coin }}</span>
+  <span>&nbsp;| Coin: {{ player.coin }}</span>
+  <span>&nbsp;| Step: {{ player.step }}</span>
   <span class="example-spacer">&nbsp;</span>
   <button mat-button (click)="pause()" *ngIf="!paused">Pause</button>
   <button mat-button (click)="unpause()" *ngIf="paused">Unpause</button>

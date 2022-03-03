@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Player } from '../player/player';
 import { Resource } from '../resource/resource';
 
 @Component({
@@ -48,9 +49,12 @@ export class AppComponent implements OnInit {
       nextLevel: 50000,
     },
   ];
-  player = {
+  player: Player = {
     coin: 0,
+    step: 0.01,
   };
+
+  interval = 10;
   paused = true;
   lastCheck = 0;
   timeout: number;
@@ -58,6 +62,10 @@ export class AppComponent implements OnInit {
   pause() {
     console.log('pause()');
     this.paused = true;
+
+    if (this.timeout) {
+      window.clearTimeout(this.timeout);
+    }
   }
 
   unpause() {
@@ -93,7 +101,7 @@ export class AppComponent implements OnInit {
       if (!context.paused) {
         context.fireGameLoop(context);
       }
-    }, 1000);
+    }, context.interval);
   }
 
   updateResources(context) {
@@ -102,7 +110,7 @@ export class AppComponent implements OnInit {
       let resource = context.resources[i];
 
       if (resource.active) {
-        resource.progress++;
+        resource.progress += context.player.step;
 
         if (resource.progress >= resource.nextLevel) {
           context.player.coin += resource.value;

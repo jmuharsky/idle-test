@@ -3,7 +3,7 @@
     <span>RESOURCE: {{ resource.name }}</span>
     <span
       >| ${{ resource.value }} per turn | Level {{ resource.level }} | Progress
-      {{ resource.progress }} / {{ resource.nextLevel }}</span
+      {{ resource.progress / resource.nextLevel | percent: '1.0-2' }}</span
     >
     <span class="example-spacer">&nbsp;</span>
     <button
