@@ -1,0 +1,9 @@
+<div class="upgrade-card" [attr.active]="upgrade.active">
+  <div class="upgrade-card-name">
+    <span class="upgrade-card-name">{{ upgrade.name }}</span> (+{{
+      upgrade.step
+    }})
+  </div>
+  <span>$ {{ upgrade.cost | number: '1.0' }}</span>
+  <button mat-button *ngIf="canBuy()" (click)="buyUpgrade()">Buy</button>
+</div>

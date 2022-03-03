@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Player } from '../player/player';
 import { Resource } from '../resource/resource';
+import { Upgrade } from '../upgrade/upgrade';
 
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'The Clicky Game';
   resources: Array<Resource> = [
     {
@@ -49,6 +50,25 @@ export class AppComponent implements OnInit {
       nextLevel: 50000,
     },
   ];
+
+  upgrades: Array<Upgrade> = [
+    {
+      name: 'Pickaxe',
+      step: 0.25,
+      cost: 10,
+    },
+    {
+      name: 'Drill',
+      step: 1,
+      cost: 100,
+    },
+    {
+      name: 'Blasting Powder',
+      step: 10,
+      cost: 5000,
+    },
+  ];
+
   player: Player = {
     coin: 0,
     step: 0.01,
@@ -126,6 +146,12 @@ export class AppComponent implements OnInit {
     for (let resource of this.resources) {
       resource.level = 0;
       resource.progress = 0;
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.timeout) {
+      window.clearTimeout(this.timeout);
     }
   }
 }

@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   <span style="align: left">{{ title }}</span>
-  <span>&nbsp;| Coin: {{ player.coin }}</span>
-  <span>&nbsp;| Step: {{ player.step }}</span>
+  <span>&nbsp;| Coin: {{ player.coin | number: '1.0' }}</span>
+  <span>&nbsp;| Step: {{ player.step | number: '1.0' }}</span>
   <span class="example-spacer">&nbsp;</span>
   <button mat-button (click)="pause()" *ngIf="!paused">Pause</button>
   <button mat-button (click)="unpause()" *ngIf="paused">Unpause</button>
@@ -9,4 +9,8 @@
 
 <div *ngFor="let resource of resources">
   <resource-card [resource]="resource" [player]="player"></resource-card>
+</div>
+
+<div *ngFor="let upgrade of upgrades">
+  <upgrade-card [upgrade]="upgrade" [player]="player"></upgrade-card>
 </div>
