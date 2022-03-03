@@ -1,0 +1,22 @@
+<div class="resource-card" [attr.active]="resource.active">
+  <div>
+    <span>RESOURCE: {{ resource.name }}</span>
+    <span
+      >| ${{ resource.value }} per turn | Level {{ resource.level }} | Progress
+      {{ resource.progress }} / {{ resource.nextLevel }}</span
+    >
+    <span class="example-spacer">&nbsp;</span>
+    <button
+      mat-button
+      *ngIf="!resource.active"
+      [disabled]="player.coin < resource.progress"
+      [color]="player.coin < resource.nextLevel ? 'disabled' : 'primary'"
+      (click)="activateResource(resource)"
+    >
+      Buy
+    </button>
+  </div>
+  <div style="margin-top: -12px;">
+    <progress [value]="resource.progress" [max]="resource.nextLevel"></progress>
+  </div>
+</div>

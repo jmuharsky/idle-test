@@ -1,0 +1,10 @@
+/* Add application styles & imports to this file! */
+
+html,
+body {
+  font-family: 'Google Sans', Verdana, Geneva, Tahoma, Arial, sans-serif;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}

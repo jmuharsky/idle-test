@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+  <span style="align: left">{{ title }}</span>
+  <span> | Coin: {{ player.coin }}</span>
+  <span class="example-spacer">&nbsp;</span>
+  <button mat-button (click)="pause()" *ngIf="!paused">Pause</button>
+  <button mat-button (click)="unpause()" *ngIf="paused">Unpause</button>
+</mat-toolbar>
+
+<div *ngFor="let resource of resources">
+  <resource-card [resource]="resource" [player]="player"></resource-card>
+</div>
